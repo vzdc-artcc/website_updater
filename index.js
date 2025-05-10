@@ -28,3 +28,9 @@ setInterval(() => {
         console.log('Events updated');
     });
 }, 1000 * 60 * 20); // 20 minutes
+
+setInterval(() => {
+    fetch(`${NEXTAUTH_URL}/api/update/appointments`).then(() => {
+        console.log('Appointments updated');
+    });
+}, 1000 * 60 * 15); // 10 minutes
