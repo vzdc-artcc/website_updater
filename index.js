@@ -3,7 +3,7 @@ setInterval(() => {
     fetch(`${NEXTAUTH_URL}/api/update/roster`).then(() => {
         console.log('Roster updated');
     });
-}, 1000 * 60 * 10); // 10 minutes
+}, 1000 * 60 * 30); // 30 minutes
 
 setInterval(() => {
     fetch(`${NEXTAUTH_URL}/api/update/stats`).then(() => {
