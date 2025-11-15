@@ -34,3 +34,17 @@ setInterval(() => {
         console.log('Appointments updated');
     });
 }, 1000 * 60 * 15); // 15 minutes
+
+const cron = require('node-cron');
+
+cron.schedule('0 0 * * 0', async () => {
+    try {
+        await fetch(`${NEXTAUTH_URL}/api/events/week`);
+        console.log('Weekly update pinged (Sunday 00:00 UTC)');
+    } catch (err) {
+        console.error('Weekly update failed', err);
+    }
+}, {
+    scheduled: true,
+    timezone: 'UTC'
+});
