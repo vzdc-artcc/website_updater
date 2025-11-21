@@ -1,10 +1,10 @@
-const NEXTAUTH_URL = process.env.NEXTAUTH_URL;
-const UPDATER_KEY = process.env.UPDATER_KEY;
+const NEXTAUTH_URL = process.env.NEXTAUTH_URL || 'http://localhost:3000';
+const UPDATER_KEY = process.env.UPDATER_KEY || 'test';
 
 setInterval(() => {
     fetch(`${NEXTAUTH_URL}/api/update/roster`, {
         headers: {
-            'x-updater-key': UPDATER_KEY
+            'API-Key': UPDATER_KEY
         },
     }).then(() => {
         console.log('Roster updated');
@@ -14,7 +14,7 @@ setInterval(() => {
 setInterval(() => {
     fetch(`${NEXTAUTH_URL}/api/update/stats`, {
         headers: {
-            'x-updater-key': UPDATER_KEY
+            'API-Key': UPDATER_KEY
         },
     }).then(() => {
         console.log('Stats updated');
@@ -24,7 +24,7 @@ setInterval(() => {
 setInterval(() => {
     fetch(`${NEXTAUTH_URL}/api/update/solo`, {
         headers: {
-            'x-updater-key': UPDATER_KEY
+            'API-Key': UPDATER_KEY
         },
     }).then(() => {
         console.log('Solos updated');
@@ -34,7 +34,7 @@ setInterval(() => {
 setInterval(() => {
     fetch(`${NEXTAUTH_URL}/api/update/loa`, {
         headers: {
-            'x-updater-key': UPDATER_KEY
+            'API-Key': UPDATER_KEY
         },
     }).then(() => {
         console.log('LOAs updated');
@@ -44,7 +44,7 @@ setInterval(() => {
 setInterval(() => {
     fetch(`${NEXTAUTH_URL}/api/update/events`, {
         headers: {
-            'x-updater-key': UPDATER_KEY
+            'API-Key': UPDATER_KEY
         },
     }).then(() => {
         console.log('Events updated');
@@ -54,7 +54,7 @@ setInterval(() => {
 setInterval(() => {
     fetch(`${NEXTAUTH_URL}/api/update/appointments`, {
         headers: {
-            'x-updater-key': UPDATER_KEY
+            'API-Key': UPDATER_KEY
         },
     }).then(() => {
         console.log('Appointments updated');
@@ -66,7 +66,7 @@ cron.schedule('0 0 * * 0', async () => {
     try {
         await fetch(`${NEXTAUTH_URL}/api/events/week`, {
             headers: {
-                'x-updater-key': UPDATER_KEY
+                'API-Key': UPDATER_KEY
             },
         });
         console.log('Weekly update pinged (Sunday 00:00 UTC)');
