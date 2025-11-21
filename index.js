@@ -36,8 +36,6 @@ setInterval(() => {
 }, 1000 * 60 * 15); // 15 minutes
 
 const cron = require('node-cron');
-console.log(cron);
-fetch(`${NEXTAUTH_URL}/api/events/week`);
 cron.schedule('0 0 * * 0', async () => {
     try {
         await fetch(`${NEXTAUTH_URL}/api/events/week`);
