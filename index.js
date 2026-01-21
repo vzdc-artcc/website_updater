@@ -1,6 +1,9 @@
 const NEXTAUTH_URL = process.env.NEXTAUTH_URL || 'http://localhost:3000';
 const UPDATER_KEY = process.env.UPDATER_KEY || 'test';
 
+console.log(NEXTAUTH_URL);
+console.log(UPDATER_KEY);
+
 setInterval(() => {
     fetch(`${NEXTAUTH_URL}/api/update/roster`, {
         headers: {
@@ -14,7 +17,7 @@ setInterval(() => {
 setInterval(() => {
     fetch(`${NEXTAUTH_URL}/api/update/stats`, {
         headers: {
-            'API-Key': UPDATER_KEY
+            'X-API-Key': UPDATER_KEY
         },
     }).then(() => {
         console.log('Stats updated');
