@@ -1,14 +1,12 @@
 const NEXTAUTH_URL = process.env.NEXTAUTH_URL || 'http://localhost:3000';
-const UPDATER_KEY = process.env.UPDATER_KEY || 'test';
+const UPDATER_KEY = process.env.UPDATER_KEY || '';
 
-console.log(NEXTAUTH_URL);
-console.log(UPDATER_KEY);
+const headers = new Headers();
+headers.append('API-Key', UPDATER_KEY);
 
 setInterval(() => {
     fetch(`${NEXTAUTH_URL}/api/update/roster`, {
-        headers: {
-            'API-Key': UPDATER_KEY
-        },
+        headers,
     }).then(() => {
         console.log('Roster updated');
     });
@@ -16,9 +14,7 @@ setInterval(() => {
 
 setInterval(() => {
     fetch(`${NEXTAUTH_URL}/api/update/stats`, {
-        headers: {
-            'X-API-Key': UPDATER_KEY
-        },
+        headers,
     }).then(() => {
         console.log('Stats updated');
     });
@@ -26,9 +22,7 @@ setInterval(() => {
 
 setInterval(() => {
     fetch(`${NEXTAUTH_URL}/api/update/solo`, {
-        headers: {
-            'API-Key': UPDATER_KEY
-        },
+        headers,
     }).then(() => {
         console.log('Solos updated');
     });
@@ -36,9 +30,7 @@ setInterval(() => {
 
 setInterval(() => {
     fetch(`${NEXTAUTH_URL}/api/update/loa`, {
-        headers: {
-            'API-Key': UPDATER_KEY
-        },
+        headers,
     }).then(() => {
         console.log('LOAs updated');
     });
@@ -46,9 +38,7 @@ setInterval(() => {
 
 setInterval(() => {
     fetch(`${NEXTAUTH_URL}/api/update/events`, {
-        headers: {
-            'API-Key': UPDATER_KEY
-        },
+        headers,
     }).then(() => {
         console.log('Events updated');
     });
@@ -56,9 +46,7 @@ setInterval(() => {
 
 setInterval(() => {
     fetch(`${NEXTAUTH_URL}/api/update/appointments`, {
-        headers: {
-            'API-Key': UPDATER_KEY
-        },
+        headers,
     }).then(() => {
         console.log('Appointments updated');
     });
@@ -68,9 +56,7 @@ const cron = require('node-cron');
 cron.schedule('0 0 * * 0', async () => {
     try {
         await fetch(`${NEXTAUTH_URL}/api/events/week`, {
-            headers: {
-                'API-Key': UPDATER_KEY
-            },
+            headers,
         });
         console.log('Weekly update pinged (Sunday 00:00 UTC)');
     } catch (err) {
